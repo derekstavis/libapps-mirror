@@ -1,0 +1,21 @@
+<dom-module id="tabbed-terminal">
+  <template>
+    <paper-tabs id="tabs" selected="{{selected}}">
+      <template is="dom-repeat" items="{{tabs}}">
+        <paper-tab noink>{{item.title}}<paper-button name="{{item.terminal}}" on-click="closeTerminal">
+            <iron-icon icon="clear"></iron-icon>
+          </paper-button>
+        </paper-tab>
+      </template>
+    </paper-tabs>
+    <iron-pages id="pages" selected="{{selected}}">
+      <template is="dom-repeat" items="{{tabs}}">
+        <crosh-terminal id="{{item.terminal}}"></crosh-terminal>
+      </template>
+    </iron-pages>
+    
+    <paper-fab icon="add" on-click="addTerminal"></paper-fab>
+  </template>
+
+  <script src='/js/tabbed-terminal.js'></script>
+</dom-module>

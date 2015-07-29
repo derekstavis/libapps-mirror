@@ -23,14 +23,18 @@
     "unlimitedStorage"
   ],
   "web_accessible_resources": [
+    "html/crosh-terminal.html",
+    "html/tabbed-terminal.html",
     "html/crosh.html",
     "html/nassh.html",
     "html/nassh_google_relay.html",
-    "html/nassh_connect_dialog.html"
+    "html/nassh_connect_dialog.html",
+    "bower_components/*"
   ],
   "background": {
     "scripts": [
       "js/nassh_deps.concat.js",
+      "js/crosh.js",
       "js/nassh.js",
       "js/nassh_app.js",
       "js/nassh_executables.js",
@@ -41,7 +45,7 @@
   },
   "app": {
     "launch": {
-      "local_path": "html/nassh.html"
+      "local_path": "html/crosh.html"
     }
   }
 }

@@ -4,14 +4,7 @@
 
 'use strict';
 
-lib.rtdep('lib.f',
-          'hterm');
-
-// CSP means that we can't kick off the initialization from the html file,
-// so we do it like this instead.
-window.onload = function() {
-  lib.init(Crosh.init);
-};
+lib.rtdep('lib.f', 'hterm');
 
 /**
  * The Crosh-powered terminal command.
@@ -45,40 +38,17 @@ Crosh.croshBuiltinId = 'nkoccljplnhpfnfiajclkommnmllphnl';
  * This constructs a new Terminal instance and instructs it to run the Crosh
  * command.
  */
-Crosh.init = function() {
+Crosh.create = function(element) {
   var profileName = lib.f.parseQuery(document.location.search)['profile'];
   var terminal = new hterm.Terminal(profileName);
 
-  terminal.decorate(document.querySelector('#terminal'));
+  terminal.decorate(element);
   terminal.onTerminalReady = function() {
     // We want to override the Ctrl-Shift-N keystroke so it opens nassh.html,
     // and its connection dialog, rather than reloading crosh.html.
     //
     // The builtin version of crosh does not come with nassh, so it won't work
     // from there.
-    if (chrome.runtime.id != Crosh.croshBuiltinId) {
-      var openSecureShell = function() {
-          window.open('/html/nassh.html', '',
-                      'chrome=no,close=yes,resize=yes,scrollbars=yes,' +
-                      'minimizable=yes,width=' + window.innerWidth +
-                      ',height=' + window.innerHeight);
-          return hterm.Keyboard.KeyActions.CANCEL;
-      };
-
-      terminal.keyboard.keyMap.keyDefs[78].control = function(e) {
-        if (e.shiftKey)
-          return openSecureShell();
-
-        return '\x0e';
-      };
-
-      terminal.keyboard.keyMap.keyDefs[78].meta = function(e) {
-        if (e.shiftKey)
-          return openSecureShell();
-
-        return hterm.Keyboard.KeyActions.DEFAULT;
-      };
-    }
 
     terminal.setCursorPosition(0, 0);
     terminal.setCursorVisible(true);
@@ -87,8 +57,6 @@ Crosh.init = function() {
     terminal.command.keyboard_ = terminal.keyboard;
   };
 
-  // Useful for console debugging.
-  window.term_ = terminal;
   return true;
 };
 

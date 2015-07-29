@@ -1,0 +1,14 @@
+{
+  "name": "crosh-terminal",
+  "description": "",
+  "homepage": "",
+  "keywords": [
+  ],
+  "author": "",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#1.0.7",
+    "paper-elements": "PolymerElements/paper-elements#1.0.1",
+    "iron-pages": "PolymerElements/iron-pages#1.0.2"
+  }
+}

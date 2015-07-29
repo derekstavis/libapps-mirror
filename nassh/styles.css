@@ -1,0 +1,52 @@
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none; 
+}
+
+body, tabbed-terminal {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  display: block;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+paper-tabs {
+  background-color: #666666;
+  color: #FFFFFF;
+}
+
+paper-tab.selected {
+  background-color: #222222;
+  font-weight: bold;
+}
+
+paper-tab paper-button {
+  border-radius: 30px;
+  background-color: black;
+  position: absolute;
+  top: 12px;
+  right: 8px;
+} 
+
+iron-pages * {
+  background-color: #000000;
+  color: white;
+  display: block;
+  height: calc(100% - 48px) !important
+}
+
+paper-fab {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
